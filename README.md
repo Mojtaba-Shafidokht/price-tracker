@@ -118,7 +118,7 @@ Current Price: 445000000
 
 ## 👨‍💻 Author
 
-Mojtaba Schafidokht
+Mojtaba Shafidokht
 
 ---
 
