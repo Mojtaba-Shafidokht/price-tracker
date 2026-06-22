@@ -219,6 +219,6 @@ __marimo__/
 
 .idea/
 .venv/
+test.py
 prices.json
 products.json
-test.py
