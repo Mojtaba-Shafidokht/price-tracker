@@ -1,5 +1,5 @@
 import json
-from scraper import get_price
+from scraper import get_product_info
 from utils import update_price
 
 
@@ -19,18 +19,22 @@ def clean_price(str_price):
 
 products = load_products()
 
-for product_name, product_url in products.items():
-    print(f"\nChecking: {product_name}")
+for product_url in products.values():
+    print("\nChecking product...")
 
-    raw_price = get_price(product_url)
+    title, raw_price = get_product_info(product_url)
 
     try:
-        if raw_price:
+        if title and raw_price:
             price = clean_price(raw_price)
+
+            print(f"Product: {title}")
             print(f"Current Price: {price}")
 
-            update_price(product_name, product_url, price)
+            update_price(title, product_url, price)
+
         else:
-            print("Price not find")
+            print("Price not find and failed to fetch data")
+
     except Exception as e:
         print("Error: ", e)

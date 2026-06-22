@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def get_price(url):
+def get_product_info(url):
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--window-size=1920,1080")
@@ -18,21 +18,31 @@ def get_price(url):
         service=Service(ChromeDriverManager().install()),
         options=options
     )
+
     driver.get(url)
 
     wait = WebDriverWait(driver, 10)
 
     try:
-        raw = wait.until(
+        title_element = wait.until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "[class='text-h4 text-neutral-900 mb-2 pointer-events-none']")
+            )
+        )
+        title = title_element.text
+
+        price_element = wait.until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, "[class='ml-1 text-neutral-800']")
             )
         )
-        price = raw.text
-        return price
+        price = price_element.text
 
-    except:
-        return None
+        return title, price
+
+    except Exception as e:
+        print("Error: ", e)
+        return None, None
 
     finally:
         driver.quit()
