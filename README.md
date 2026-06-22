@@ -112,7 +112,6 @@ Current Price: 445000000
 
 ## 🔮 Future Improvements
 
-* Automatic product name extraction
 * Email/Telegram notifications on price changes
 * Export data to Excel
 * Scheduling (run periodically)
