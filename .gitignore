@@ -220,3 +220,5 @@ __marimo__/
 .idea/
 .venv/
 prices.json
+products.json
+test.py
