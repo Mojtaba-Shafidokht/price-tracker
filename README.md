@@ -61,13 +61,17 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Usage
+## 🧾 Configuration
 
-1. Add your product URL in `main.py`:
+Before running the project, you need to create a `products.json` file.
 
-```python
-product_url = "https://www.digikala.com/product/..."
+You can use the provided example file:
+
+```bash
+cp products.example.json products.json
 ```
+
+Then edit `products.json` and add your desired product URLs.
 
 2. Run the program:
 
@@ -108,7 +112,6 @@ Current Price: 445000000
 
 ## 🔮 Future Improvements
 
-* Track multiple products simultaneously
 * Automatic product name extraction
 * Email/Telegram notifications on price changes
 * Export data to Excel
