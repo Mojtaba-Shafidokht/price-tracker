@@ -3,6 +3,16 @@ import json
 FILE_NAME = "prices.json"
 
 
+def get_last_price(product_url):
+    data = load_data()
+
+    for product_name, product_info in data.items():
+        if product_info["url"] == product_url:
+            return product_name, product_info["price"]
+
+    return None, None
+
+
 def load_data():
     try:
         with open(FILE_NAME, "r", encoding="utf-8") as f:
@@ -14,7 +24,7 @@ def load_data():
 
 def save_data(data):
     with open(FILE_NAME, "w", encoding="utf-8") as f:
-        json.dump(data, f,ensure_ascii=False, indent=4)
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
 
 def update_price(product_name, url, new_price):
