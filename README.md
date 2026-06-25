@@ -73,7 +73,51 @@ cp products.example.json products.json
 
 Then edit `products.json` and add your desired product URLs.
 
-2. Run the program:
+---
+
+## ⚠️ ChromeDriver Requirement
+
+This project uses Selenium to automate browser interactions.
+To run the project successfully, you need to have a compatible version of **Google Chrome** and **ChromeDriver** installed.
+
+### 🔧 Setup Instructions
+
+1. Check your Chrome version:
+
+```
+chrome://version
+```
+
+2. Download the matching ChromeDriver:
+   https://googlechromelabs.github.io/chrome-for-testing/
+
+3. Place `chromedriver` in the project directory:
+
+```
+price-tracker/
+├── chromedriver.exe
+```
+
+---
+
+### ❗ Important Notes
+
+* ChromeDriver version **must match** your installed Chrome version
+* This project currently supports **Google Chrome only**
+* Other browsers like Firefox are not supported by default
+
+---
+
+### 🌍 Network Limitation
+
+In some regions, automatic driver download may be blocked.
+For this reason, the project uses a **local ChromeDriver** instead of downloading it dynamically.
+
+---
+
+## ▶️ Usage
+
+Run the program:
 
 ```bash
 python main.py
@@ -84,7 +128,7 @@ python main.py
 ## 🧠 How It Works
 
 1. The scraper fetches the product page using Selenium
-2. Extracts the product price
+2. Extracts the product title and price
 3. Cleans and converts the price into an integer
 4. Stores the price in a JSON file
 5. Compares it with the previous price
@@ -95,9 +139,11 @@ python main.py
 ## 📌 Example Output
 
 ```
-iphone_17_pro_max_256_12_CH
-Current Price: 445000000
-➖ No change
+Checking product...
+
+Product: Apple iPhone 17 Pro Max CH Dual SIM
+Current Price: 450000000
+📈 Price increased
 ```
 
 ---
