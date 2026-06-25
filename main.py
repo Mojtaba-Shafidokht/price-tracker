@@ -34,7 +34,7 @@ for product_url in products.values():
             update_price(title, product_url, price)
 
         else:
-            print("Price not find and failed to fetch data")
+            print("Price not find!")
 
     except Exception as e:
         print("Error: ", e)

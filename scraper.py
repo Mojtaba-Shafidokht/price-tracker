@@ -14,10 +14,13 @@ def get_product_info(url):
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("user-agent=Mozilla/5.0")
 
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options
-    )
+    try:
+        driver = webdriver.Chrome(
+            service=Service("./chromedriver.exe"),
+            options=options
+        )
+    except:
+        driver = webdriver.Chrome()
 
     driver.get(url)
 
