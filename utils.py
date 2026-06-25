@@ -5,7 +5,7 @@ FILE_NAME = "prices.json"
 
 def load_data():
     try:
-        with open(FILE_NAME, "r") as f:
+        with open(FILE_NAME, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
         print("Error: ", e)
@@ -13,8 +13,8 @@ def load_data():
 
 
 def save_data(data):
-    with open(FILE_NAME, "w") as f:
-        json.dump(data, f, indent=4)
+    with open(FILE_NAME, "w", encoding="utf-8") as f:
+        json.dump(data, f,ensure_ascii=False, indent=4)
 
 
 def update_price(product_name, url, new_price):
