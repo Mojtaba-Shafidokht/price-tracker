@@ -1,10 +1,10 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, WebDriverException
 
 
 def get_product_info(url):
@@ -43,8 +43,10 @@ def get_product_info(url):
 
         return title, price
 
+    except TimeoutException:
+        return None, None
+
     except Exception as e:
-        print("Error: ", e)
         return None, None
 
     finally:

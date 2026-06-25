@@ -22,9 +22,9 @@ products = load_products()
 for product_url in products.values():
     print("\nChecking product...")
 
-    title, raw_price = get_product_info(product_url)
-
     try:
+        title, raw_price = get_product_info(product_url)
+
         if title and raw_price:
             price = clean_price(raw_price)
 
