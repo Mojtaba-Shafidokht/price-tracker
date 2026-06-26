@@ -12,6 +12,7 @@ This project automatically scrapes product prices, stores them, and detects any 
 * 💾 Store prices locally using JSON
 * 📈 Detect price changes (increase, decrease, no change)
 * 🧱 Modular and scalable project structure
+* 📬 Telegram notifications for price changes and unavailable products
 
 ---
 
@@ -20,6 +21,8 @@ This project automatically scrapes product prices, stores them, and detects any 
 * Python 3
 * Selenium
 * JSON (for data storage)
+* python-dotenv (for environment variables)
+* Telegram Bot API (for notifications)
 
 ---
 
@@ -72,6 +75,17 @@ cp products.example.json products.json
 ```
 
 Then edit `products.json` and add your desired product URLs.
+
+---
+
+## 📬 Telegram Notifications
+
+1. Create a bot via @BotFather and get your token
+2. Send a message to your bot and get your Chat ID
+3. Create a .env file based on .env.example
+4. Add your token and chat ID
+
+⚠️ Note: Telegram requires a VPN in restricted regions (e.g., Iran).
 
 ---
 
@@ -158,7 +172,6 @@ Current Price: 450000000
 
 ## 🔮 Future Improvements
 
-* Email/Telegram notifications on price changes
 * Export data to Excel
 * Scheduling (run periodically)
 
