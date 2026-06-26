@@ -82,14 +82,16 @@ Then edit `products.json` and add your desired product URLs.
 
 1. Create a bot via `@BotFather` and get your token
 2. Send a message to your bot and get your Chat ID:
-https://api.telegram.org/bot<YOUR_TOKEN_HERE>/getUpdates
+`https://api.telegram.org/bot<YOUR_TOKEN_HERE>/getUpdates`
 3. Rename `.env.example` to `.env`:
 ```bash
 mv .env.example .env
 ```
 4. Open `.env` and fill in your credentials:
+```
 TELEGRAM_TOKEN=your_token_here
 TELEGRAM_CHAT_ID=your_chat_id_here
+```   
 
 > ⚠️ **Note:** Telegram requires a VPN in restricted regions (e.g., Iran).
 
