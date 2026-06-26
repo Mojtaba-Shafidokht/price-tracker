@@ -1,4 +1,5 @@
 import json
+from notifier import send_notification
 
 FILE_NAME = "prices.json"
 
@@ -35,10 +36,13 @@ def update_price(product_name, url, new_price):
 
         if new_price > old_price:
             print("📈 Price increased")
+            send_notification(product_name, old_price, new_price)
         elif new_price < old_price:
             print("📉 Price decreased")
+            send_notification(product_name, old_price, new_price)
         else:
             print("➖ No change")
+            send_notification(product_name, old_price, new_price)
 
     else:
         print("🆕 New product added")

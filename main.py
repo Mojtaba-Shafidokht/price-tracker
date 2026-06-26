@@ -1,7 +1,7 @@
 import json
 from scraper import get_product_info
-from utils import update_price
-from utils import get_last_price
+from utils import update_price, get_last_price
+from notifier import send_unavailable, send_not_found
 
 
 def load_products():
@@ -40,8 +40,10 @@ for product_url in products.values():
             if last_name:
                 print(f"Product: {last_name}")
                 print(f"⚠️ Unavailable - Last Price: {last_price}")
+                send_unavailable(last_name, last_price)
             else:
                 print(f"❌ Product not found! - ⚠️ Check it manually to make sure!\nProduct url: {product_url}")
+                send_not_found(product_url)
 
     except Exception as e:
         print("Error: ", e)
