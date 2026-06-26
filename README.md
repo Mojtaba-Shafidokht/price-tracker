@@ -81,9 +81,15 @@ Then edit `products.json` and add your desired product URLs.
 ## 📬 Telegram Notifications
 
 1. Create a bot via @BotFather and get your token
-2. Send a message to your bot and get your Chat ID
-3. Create a .env file based on .env.example
-4. Add your token and chat ID
+2. Send a message to your bot and get your Chat ID from this link https://api.telegram.org/bot<YOUR_TOKEN_HERE>/getUpdates
+3. Rename .env.example to .env:
+
+mv .env.example .env
+
+4. Open .env and fill in your credentials:
+
+TELEGRAM_TOKEN=your_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
 
 ⚠️ Note: Telegram requires a VPN in restricted regions (e.g., Iran).
 
