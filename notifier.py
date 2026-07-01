@@ -22,21 +22,20 @@ def send_not_found(url):
     requests.post(url_api, data={"chat_id": CHAT_ID, "text": message})
 
 
-def send_unavailable(product_name, last_price):
-    date = datetime.now().strftime("%Y-%m-%d %H:%M")
-
+def send_unavailable(product_name, last_price, min_price, date):
     message = (
         "⚠️ Product unavailable\n\n"
         f"🛍 {product_name}\n\n"
         f"Last price: {last_price:,} Toman\n"
-        f"🕐 {date}"
+        f"Minimum price: {min_price:,} Toman\n"
+        f"🕐 Last updated: {date}"
     )
 
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     requests.post(url, data={"chat_id": CHAT_ID, "text": message})
 
 
-def send_notification(product_name, old_price, new_price):
+def send_notification(product_name, old_price, new_price, min_price):
     date = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     if new_price > old_price:
@@ -54,7 +53,8 @@ def send_notification(product_name, old_price, new_price):
         f"🛍 {product_name}\n\n"
         f"Last price: {old_price:,} Toman\n"
         f"New price: {new_price:,} Toman\n"
-        f"🕐 {date}"
+        f"Minimum price: {min_price:,} Toman\n"
+        f"🕐 Last updated: {date}"
     )
 
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
