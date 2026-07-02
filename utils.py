@@ -1,6 +1,5 @@
 import json
 import re
-from notifier import send_notification
 from datetime import datetime
 
 FILE_NAME = "prices.json"
@@ -45,7 +44,9 @@ def update_price(product_name, url, new_price):
         }
 
         save_data(data)
-        return data[product_id]
+        result = data[product_id].copy()
+        result["price_changed"] = None
+        return result
 
     last_price = data[product_id]["current_price"]
     min_price = data[product_id].get("minimum_price", new_price)
@@ -53,12 +54,13 @@ def update_price(product_name, url, new_price):
     if new_price < min_price:
         min_price = new_price
 
+    price_changed = None
     if new_price > last_price:
         print("📈 Price increased")
-        send_notification(product_name, last_price, new_price, min_price)
+        price_changed = "increased"
     elif new_price < last_price:
         print("📉 Price decreased")
-        send_notification(product_name, last_price, new_price, min_price)
+        price_changed = "decreased"
     else:
         print("➖ No change")
 
@@ -71,4 +73,6 @@ def update_price(product_name, url, new_price):
     }
 
     save_data(data)
-    return data[product_id]
+    result = data[product_id].copy()
+    result["price_changed"] = price_changed
+    return result

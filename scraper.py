@@ -3,8 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.common.exceptions import TimeoutException
 
 
 def get_product_info(url):
@@ -28,14 +28,14 @@ def get_product_info(url):
 
     try:
         title_element = wait.until(
-            EC.presence_of_element_located(
+            ec.presence_of_element_located(
                 (By.CSS_SELECTOR, "[class='text-h4 text-neutral-900 mb-2 pointer-events-none']")
             )
         )
         title = title_element.text
 
         price_element = wait.until(
-            EC.presence_of_element_located(
+            ec.presence_of_element_located(
                 (By.CSS_SELECTOR, "[class='ml-1 text-neutral-800']")
             )
         )

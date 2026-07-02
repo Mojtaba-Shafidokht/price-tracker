@@ -1,7 +1,7 @@
 import json
 from scraper import get_product_info
 from utils import update_price, extract_id, load_data as load_products_info
-from notifier import send_unavailable, send_not_found
+from notifier import send_notification
 
 
 def load_products():
@@ -22,6 +22,7 @@ def clean_price(str_price):
 
 
 products = load_products()
+messages = []
 
 for product_url in products.values():
     print("\nChecking product...")
@@ -38,7 +39,19 @@ for product_url in products.values():
             print(f"Product_title: {title}")
             print(f"Current Price: {price}")
             print(f"Minimum Price: {info['minimum_price']}")
-            print(f"Last Updated: {info['last_updated']}")
+            print(f"🕐 Last Updated: {info['last_updated']}")
+
+            if info.get("price_changed"):
+                emoji = "📈" if info["price_changed"] == "increased" else "📉"
+                status = "Price increased" if info["price_changed"] == "increased" else "Price decreased"
+
+                messages.append(
+                    f"{emoji} {status}\n"
+                    f"🛍 Product: {title}\n"
+                    f"Current price: {price}\n"
+                    f"Minimum price: {info['minimum_price']}\n"
+                    f"🕐 Last updated: {info['last_updated']}\n"
+                )
 
         else:
             product_id = extract_id(product_url)
@@ -49,17 +62,27 @@ for product_url in products.values():
                 title, current_price, min_price, date = (
                     info['title'], info['current_price'], info['minimum_price'], info['last_updated'])
 
-                print(f"Product_title: {info['title']}")
-                print(f"⚠️ Unavailable - Last Price: {info['current_price']}")
-                print(f"Minimum Price: {info['minimum_price']}"),
-                print(f"Last Updated: {info['last_updated']}")
+                log1 = (
+                    f"🛍 Product: {title}"
+                    f"⚠️ Unavailable - Last Price: {current_price}"
+                    f"Minimum Price: {min_price}"
+                    f"🕐 Last Updated: {date}"
+                )
 
-                send_unavailable(title, current_price, min_price, date)
+                print(log1)
+                messages.append(log1)
 
             else:
-                print(f"❌ Product not found! - ⚠️ Check it manually to make sure!\nProduct url: {product_url}")
+                log2 = f"❌ Product out of stack! - ⚠️ Check it manually to make sure!\n🔗 Product url: {product_url}"
 
-                send_not_found(product_url)
+                print(log2)
+                messages.append(log2)
 
     except Exception as e:
         print("Error: ", e)
+
+if messages:
+    final_message = "\n\n".join(messages)
+    send_notification(final_message)
+else:
+    print("No changes for sending notifications!")
