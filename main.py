@@ -36,20 +36,20 @@ for product_url in products.values():
 
             info = update_price(title, product_url, price)
 
-            print(f"Product_title: {title}")
-            print(f"Current Price: {price}")
-            print(f"Minimum Price: {info['minimum_price']}")
+            print(f"🛍 Product: {title}")
+            print(f"📊 Current Price: {price}")
+            print(f"⬇️ Minimum Price: {info['minimum_price']}")
             print(f"🕐 Last Updated: {info['last_updated']}")
 
             if info.get("price_changed"):
-                emoji = "📈" if info["price_changed"] == "increased" else "📉"
+                emoji = "📈" if info["price_changed"]=="increased" else "📉"
                 status = "Price increased" if info["price_changed"] == "increased" else "Price decreased"
 
                 messages.append(
                     f"{emoji} {status}\n"
                     f"🛍 Product: {title}\n"
-                    f"Current price: {price}\n"
-                    f"Minimum price: {info['minimum_price']}\n"
+                    f"📊 Current price: {price}\n"
+                    f"⬇️ Minimum price: {info['minimum_price']}\n"
                     f"🕐 Last updated: {info['last_updated']}\n"
                 )
 
@@ -63,9 +63,9 @@ for product_url in products.values():
                     info['title'], info['current_price'], info['minimum_price'], info['last_updated'])
 
                 log1 = (
-                    f"🛍 Product: {title}"
-                    f"⚠️ Unavailable - Last Price: {current_price}"
-                    f"Minimum Price: {min_price}"
+                    f"⚠️ Unavailable - Last Price: {current_price}\n"
+                    f"🛍 Product: {title}\n"
+                    f"⬇️ Minimum Price: {min_price}\n"
                     f"🕐 Last Updated: {date}"
                 )
 

@@ -50,6 +50,7 @@ def update_price(product_name, url, new_price):
 
     last_price = data[product_id]["current_price"]
     min_price = data[product_id].get("minimum_price", new_price)
+    date = data[product_id]["last_updated"]
 
     if new_price < min_price:
         min_price = new_price
@@ -57,9 +58,11 @@ def update_price(product_name, url, new_price):
     price_changed = None
     if new_price > last_price:
         print("📈 Price increased")
+        date = datetime.now().strftime("%Y-%m-%d %H:%M")
         price_changed = "increased"
     elif new_price < last_price:
         print("📉 Price decreased")
+        date = datetime.now().strftime("%Y-%m-%d %H:%M")
         price_changed = "decreased"
     else:
         print("➖ No change")
@@ -69,7 +72,7 @@ def update_price(product_name, url, new_price):
         "url": url,
         "current_price": new_price,
         "minimum_price": min_price,
-        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M")
+        "last_updated": date
     }
 
     save_data(data)
