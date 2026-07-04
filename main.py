@@ -73,7 +73,7 @@ for product_url in products.values():
                 messages.append(log1)
 
             else:
-                log2 = f"❌ Product out of stack! - ⚠️ Check it manually to make sure!\n🔗 Product url: {product_url}"
+                log2 = f"❌ Product out of stock! - ⚠️ Check it manually to make sure!\n🔗 Product url: {product_url}"
 
                 print(log2)
                 messages.append(log2)
