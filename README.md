@@ -31,14 +31,14 @@ This project automatically scrapes product prices, stores them, and detects any 
 ```
 price-tracker/
 │
-├── main.py            # Entry point of the application
-├── scraper.py         # Handles web scraping logic
-├── utils.py           # Data storage and comparison logic
-├── notifier.py        # Sends batched Telegram notifications
-├── .env.example       # Template for environment variables
+├── main.py                # Entry point of the application
+├── scraper.py             # Handles web scraping logic
+├── utils.py               # Data storage and comparison logic
+├── notifier.py            # Sends batched Telegram notifications
+├── .env.example           # Template for environment variables
 ├── products.example.json  # Template for product URLs
-├── requirements.txt   # Project dependencies
-├── README.md          # Project documentation
+├── requirements.txt       # Project dependencies
+├── README.md              # Project documentation
 ```
 
 ---
@@ -48,15 +48,22 @@ price-tracker/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/price-tracker.git
+git clone https://github.com/Mojtaba-Shafidokht/price-tracker.git
 cd price-tracker
 ```
 
 2. Create and activate virtual environment:
 
-```bash
+**Windows:**
+```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
+```
+
+**Linux / macOS:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 3. Install dependencies:
@@ -73,6 +80,12 @@ Before running the project, you need to create a `products.json` file.
 
 You can use the provided example file:
 
+**Windows:**
+```powershell
+Copy-Item products.example.json products.json
+```
+
+**Linux / macOS:**
 ```bash
 cp products.example.json products.json
 ```
@@ -94,6 +107,13 @@ Then edit `products.json` and add your desired product URLs.
 2. Send a message to your bot and get your Chat ID:
 `https://api.telegram.org/bot<YOUR_TOKEN_HERE>/getUpdates`
 3. Rename `.env.example` to `.env`:
+
+**Windows:**
+```powershell
+Rename-Item .env.example .env
+```
+
+**Linux / macOS:**
 ```bash
 mv .env.example .env
 ```
