@@ -35,11 +35,17 @@ price-tracker/
 ├── scraper.py             # Handles web scraping logic
 ├── utils.py               # Data storage and comparison logic
 ├── notifier.py            # Sends batched Telegram notifications
+├── assets/
+│   └── demo.gif           # Demo GIF shown in README
 ├── .env.example           # Template for environment variables
 ├── products.example.json  # Template for product URLs
 ├── requirements.txt       # Project dependencies
 ├── README.md              # Project documentation
 ```
+
+---
+
+![demo](assets/demo.gif)
 
 ---
 
