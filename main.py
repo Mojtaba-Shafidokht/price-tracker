@@ -8,7 +8,8 @@ def load_products():
     try:
         with open("products.json", "r") as f:
             return json.load(f)
-    except:
+    except Exception as e:
+        print(f"Error occurred: {e}")
         return {}
 
 
@@ -42,7 +43,7 @@ for product_url in products.values():
             print(f"🕐 Last Updated: {info['last_updated']}")
 
             if info.get("price_changed"):
-                emoji = "📈" if info["price_changed"]=="increased" else "📉"
+                emoji = "📈" if info["price_changed"] == "increased" else "📉"
                 status = "Price increased" if info["price_changed"] == "increased" else "Price decreased"
 
                 messages.append(
